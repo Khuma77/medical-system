@@ -1,0 +1,47 @@
+package com.stohirov.entities.template;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.sql.Timestamp;
+import java.util.UUID;
+
+@MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class AbsEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @CreatedBy
+    @Column(updatable = false)
+    private UUID createdBy;
+
+    @LastModifiedDate
+    private UUID updatedBy;
+
+    @CreatedDate
+    @Column(updatable = false)
+    private Timestamp createdAt;
+
+    @LastModifiedDate
+    private Timestamp updatedAt;
+
+    private boolean isDeleted = false;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
+}

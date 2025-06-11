@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS measurement (
+    id BIGSERIAL PRIMARY KEY,
+    created_by BIGINT,
+    last_modified_by BIGINT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
+    name VARCHAR(72) NOT NULL,
+    symbol VARCHAR(32) NOT NULL,
+    description TEXT
+);

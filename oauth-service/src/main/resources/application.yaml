@@ -1,0 +1,22 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/myrealm
+          jwk-set-uri: http://localhost:9090/realms/myrealm/protocol/openid-connect/certs
+
+jwt:
+  auth:
+    converter:
+      resource-id: stohirov
+      principle-attribute: preferred_username
+
+keycloak:
+  server-url: http://localhost:9090
+  realm: myrealm
+  admin-client-id: super_admin
+  admin-client-secret: zflzuLuejnXqfZkIRI39FPv5mMKPB72c
+
+server:
+  port: 8080
